@@ -24,10 +24,10 @@ public class Search {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         Search search = new Search();
         for (int i = 0; i < 20; i++) {
-            search.googleWithReplicatedServers3("some query");
+            search.google("some query");
         }
 
-        Thread.currentThread().join();
+        executorService.shutdown();
     }
 
 // Google search parallel: parallel calls to web, image and video services
@@ -51,16 +51,13 @@ public class Search {
             supplyAsync(() -> video(query))
         };
 
-        // This is the first difference with the go example, the result array must be a synchronized list.
-        // Go channel are completely thread safe, so it's totally okay to funnel data from multiple go routines to an
-        // array.
-        List<String> result = Collections.synchronizedList(new ArrayList<>());
+        List<String> result = new ArrayList<>();
 
         allOf(futures)
             .thenAccept((ignore) -> Arrays.stream(futures)
                                           .map(this::safeGet)
                                           .forEach(result::add)).get();
-
+        // Note: calling get is necessary only because I want to print the result before returning from the function
         System.out.println(result);
     }
 
@@ -84,6 +81,9 @@ public class Search {
 //    }
 //    return
     public void googleWithTimeout(String query) throws ExecutionException, InterruptedException {
+        // This is the first difference with the go example, the result array must be a synchronized list.
+        // Go channel are completely thread safe, so it's totally okay to funnel data from multiple go routines to an
+        // array.
         List<String> result = Collections.synchronizedList(new ArrayList<>());
 
         // this is not safe since it's possible that all the thread in the thread pool (default to ForkJoin) are busy,
