@@ -28,7 +28,7 @@ func copy(profileName string, in io.Reader, out io.Writer) error {
 		}
 	}
 
-	 if writeError != nil {
+     if writeError != nil {
 	    return writeError
      }
 
