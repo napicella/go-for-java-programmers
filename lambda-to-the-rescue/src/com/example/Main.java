@@ -23,9 +23,9 @@ public class Main {
 
         ProfileFilter profileFilter =
             new ProfileFilter(
-                startsWith.curry("#some-profile"),
-                startsWith.curry("key2="),
-                startsWith.curry("key3=")
+                startsWith.apply("#some-profile"),
+                startsWith.apply("key2="),
+                startsWith.apply("key3=")
             );
 
         Files.lines(resource())
@@ -58,7 +58,7 @@ public class Main {
 
     interface Matcher extends BiPredicate<String, String> {
 
-        default Predicate<String> curry(String applied) {
+        default Predicate<String> apply(String applied) {
             return s -> this.test(s, applied);
         }
     }
