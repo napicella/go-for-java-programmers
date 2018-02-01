@@ -27,6 +27,16 @@ func copy(profileName string, in io.Reader, out io.Writer) error {
 			break
 		}
 	}
+
+	 if writeError != nil {
+	    return writeError
+     }
+
+     if readError != io.EOF {
+        return readError
+     }
+
+     return nil
 }
 
 func newProfileFilter(profileName string) *profileFilter {

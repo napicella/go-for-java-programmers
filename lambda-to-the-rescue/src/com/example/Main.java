@@ -10,6 +10,11 @@ import java.util.LinkedList;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+/**
+ * The code is a companion to the article about lambdas in go, just to show how the
+ * `equivalent` java code looks like.
+ * See go/profile-filter.go
+ */
 public class Main {
     private static final String RESOURCE = "resources/resource";
 
