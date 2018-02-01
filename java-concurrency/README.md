@@ -1,4 +1,4 @@
-# Go-for-java-programmers 
+# Go-for-java-programmers (or is the java concurrency that bad)
 Code used in https://dev.to/napicellatwit/go-for-java-developers-or-is-the-java-concurrency-that-bad-6ff
 
 I am by no means an expert in Go, indeed quite the opposite. I am currently trying to get familiar with it.
