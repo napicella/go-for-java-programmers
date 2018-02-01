@@ -24,8 +24,8 @@ public class Main {
         ProfileFilter profileFilter =
             new ProfileFilter(
                 startsWith.curry("#some-profile"),
-                startsWith.curry("key2"),
-                startsWith.curry("key3")
+                startsWith.curry("key2="),
+                startsWith.curry("key3=")
             );
 
         Files.lines(resource())

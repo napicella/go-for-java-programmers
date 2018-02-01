@@ -44,8 +44,8 @@ func newProfileFilter(profileName string) *profileFilter {
 
 	matchers = append(matchers,
 		matcher(startsWith).apply("#"+profileName),
-		matcher(startsWith).apply("key2"),
-		matcher(startsWith).apply("key3"),
+		matcher(startsWith).apply("key2="),
+		matcher(startsWith).apply("key3="),
 	)
 
 	return &profileFilter{matchers, profileName}
